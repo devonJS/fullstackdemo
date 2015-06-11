@@ -1,0 +1,14 @@
+.glyphicon-remove-circle.ng-hide-add-active{
+  -webkit-transition: 0.1s linear all;
+  transition: 0.1s linear all;
+  transition-delay: 0.1s;
+  opacity: 0;
+}
+
+.glyphicon-remove-circle.ng-hide-add{
+  opacity: 1;
+}
+
+.centered{
+  text-align: center;
+}

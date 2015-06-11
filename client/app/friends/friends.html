@@ -1,0 +1,74 @@
+<!--Green alert for clicking on download-->
+<div class="col-md-12 col-sm-12">
+  <br>
+  <div class="alert alert-success" ng-show="isDownloading">You've been redirected to the Snabbt download page </div>
+</div>
+
+
+
+<div class = "container" >
+  <div class = "row">
+    <div class = "col-md-12 col-sm-12 centered" ng-hide=hasChromeExtension">
+      <br>
+      <p class="notInstalledNotifcation">You seem to not have installed the Snabbt Chrome Extension or have it disabled</p>
+      <button type="button" class="btn btn-primary btn-lg" ng-click="openChromeExtensionTab()">Download Snabbt Chrome Extension</button>
+    </div>
+  </div>
+</div>
+
+<div class = "container" ng-show = "hasChromeExtension">
+  <div class = "row">
+      <div class = "col-md-5 col-md-offset-3">
+        <div class="file-input-wrapper btn btn-default btn-primary selectFilesBtn">
+          <span>Select Files to Transfer to Friends and Clients</span>
+          <input type="file" fileread="fileChosen" ng-click="restartFileChosen()" multiple/>
+        </div>
+      </div>
+  </div>
+  <br><br>
+  <div class = "row">
+      <div class = "col-md-5 col-md-offset-2">
+        <button class="btn btn-default glyphicon glyphicon-plus plusAdjust" title="Add Friend" ng-click="openFriendsModal()"></button>
+        <span class="addFriendFont">Add Friend</span>
+      </div>
+  </div>
+</div>
+
+<div class = "container" ng-show="hasChromeExtension" ng-repeat="friend in friendsList">
+  <!--Green alert for clicking friend -->
+  <div class = "row">
+    <div class="col-md-8 col-md-offset-2 col-sm-8">
+      <br>
+      <div class="alert alert-success" ng-show="transferStarted">You have initialized a transfer with {{friend.firstName}} </div>
+    </div>
+  </div>
+  <br>
+
+  <div class = "row">
+    <div class = "col-md-2 col-md-offset-2">
+      <img class="friendPicture" src="{{friend.pictureID}}">
+    </div>
+    <div class = "col-md-3 centered">
+        <h4>{{friend.firstName}} {{friend.lastName}} {{friend.userName | parenthesis}}</h4>
+        <h5>{{friend.email}}</h5>
+        <h6>{{friend.description}}</h6>
+    </div>
+    <div class = "col-md-2 col-md-offset-1">
+        <button type="button" class="btn btn-success successButtonAdjust" ng-hide="transferStarted" ng-click="sendConnectRequestEmail(friend); initializeTransfer(friend); transferStarted=true"  ng-disabled="!isFileChosen()">Start File Transfer</button>
+        <button type="button" class="btn btn-default transferStartedButtonAdjust" ng-show="transferStarted">Initialized</button>
+        <br>
+    </div>
+    <br>
+  </div><br><br>
+</div>
+
+<div class="centered" ng-hide="!hasChromeExtension">
+  <button type="button" class="btn btn-primary" ng-click="openChromeExtensionTab()">Re-Download Snabbt Client</button>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="centered" ng-show="hasChromeExtension"><em>You are now running Snabbt v{{snabbtVersion}}</em></p>
+    <p>Snabbt.io | 2015
+  </div>
+</footer>

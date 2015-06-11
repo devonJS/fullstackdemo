@@ -1,0 +1,59 @@
+.friendinfo {
+  vertical-align: middle;
+  margin-left: 20px;
+  margin-bottom: 25px;
+}
+
+.transferringadjust {
+  margin-top: 30px;
+  width: 153px;
+}
+
+.darkgray {
+  color: darkgray;
+}
+
+.canceltransferadjust {
+  margin-left: 35px;
+}
+
+.limegreen {
+  color: limegreen;
+}
+
+.accepttransfer {
+  width: 151px;
+  margin-top: 15px;
+}
+
+.buttonwidth {
+  width: 151px;
+}
+
+.requestingbutton {
+  width: 153px;
+  margin-top: 5px;"
+}
+
+.graycancelcircle {
+  color: darkgray;
+  top:-10px;"
+}
+
+.friendpicturebottomadjust {
+  width: 100px;
+  height:100px;
+  margin-top: 9px;
+}
+
+.red {
+  color: red;
+}
+
+.restartadjust {
+  margin-top:25px;
+}
+
+.canceladjust {
+  margin-left: -62px;
+}

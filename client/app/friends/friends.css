@@ -1,0 +1,87 @@
+.modal-body{
+  height: 260px;
+  /*For scrollbar:*/
+  /*overflow: auto;*/
+}
+
+.modalCentered{
+  text-align: center;
+  margin-top: 90px;
+}
+
+.help-block{
+  color: red;
+}
+
+.btn-file{
+  position: relative;
+  overflow: hidden;
+  height: 50px;
+  width: 180px;
+  line-height: 35px;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+.selectFilesBtn {
+  height: 55px;
+  line-height: 40px;
+  font-size: 25px;
+}
+
+.addFriendFont {
+  font-size: 20px;
+}
+
+.plusAdjust {
+  margin-top: -10px
+}
+
+.exitModalIcon {
+  font-size: 20px;
+  color: black;
+  top: -35px;
+  right: -40px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.notInstalledNotifcation {
+  text-align: center;
+  font-size: 12px;
+}
+
+.friendPicture {
+  width: 100px;
+  height: 100px;
+}
+
+.successButtonAdjust {
+  margin-top: 30px;
+}
+
+.transferStartedButtonAdjust {
+  margin-top: 30px;
+  width: 137px;
+}

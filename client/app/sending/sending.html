@@ -1,0 +1,84 @@
+<div class = "container">
+  <!--Top Level-->
+  <div class = "row" ng-repeat="transfer in sentTransfers" ng-init="transferStatusCheck(transfer)" ng-show="transfer.transferring">
+    <div class = "col-md-2 col-md-offset-2">
+      <img src="{{transfer.pictureID}}" class="friendPicture"">
+    </div>
+    <div class = "col-md-4 friendinfo">
+      <h4>{{transfer.transferReceiverFirstName}} {{transfer.transferReceiverLastName}} {{transfer.transferReceiverUserName | parenthesis}}</h4>
+      <h5>{{transfer.transferReceiverEmail}}</h5>
+      <h5><em>Date started: {{transfer.transferHistory[0].date | date}}</em></h5>
+    </div>
+    <div class = "col-md-3">
+      <button type="button" class="btn btn-default transferringadjust" ng-mouseover="buttonHoverOver()" ng-mouseleave="buttonHoverLeave()">Transferring...</button>
+      <div ng-show="buttonMouseOver" ng-mouseover="buttonHoverOver()" ng-mouseleave="buttonHoverLeave()" ng-click="clickedDelete = !clickedDelete" class="glyphicon glyphicon-remove-circle darkgray"></div>
+      <br>
+      <div class = "deleteChecker" ng-show="clickedDelete">
+        <p class="canceladjust">Are you sure you want to cancel this transfer?</p>
+        <button type="button" class="btn btn-success btn-sm canceltransferadjust" ng-click="clickedDelete = false; cancelTopTransfer(transfer); ">Yes</button>&nbsp;<button type="button" class="btn btn-danger btn-sm" ng-click="clickedDelete = false" >No</button>
+      </div>
+    </div>
+  </div>
+  <div ng-show="topLevelCount && (midLevelCount || lowLevelCount)">
+    <hr>
+  </div>
+
+  <!--Middle Level-->
+  <div class = "row" ng-repeat="transfer in sentTransfers" ng-init="transferStatusCheck(transfer)" ng-show="transfer.initialized || transfer.restarted" ng-hide="transfer.cancelled || transfer.removedBySender || transfer.removedByReceiver || transfer.declined || transfer.transferring">
+    <div class = "col-md-2 col-md-offset-2">
+      <img src="{{transfer.pictureID}}" class="friendpicturebottomadjust">
+    </div>
+    <div class = "col-md-4 friendinfo">
+      <h4>{{transfer.transferReceiverFirstName}} {{transfer.transferReceiverLastName}} {{transfer.transferReceiverUserName | parenthesis}}</h4>
+      <h5>{{transfer.transferReceiverEmail}}</h5>
+      <h5><em>Date started: {{transfer.transferHistory[0].date | date}}</em></h5>
+      <h5 ng-show="transfer.restarted" class="limegreen"><em>Date {{transfer.transferStatus.status}}: {{transfer.transferStatus.date | date}}</em></h5>
+    </div>
+    <div class = "col-md-3 restartadjust">
+      <div ng-show="transfer.restarted && !restartedByUser(transfer)">
+        <button type="button" class="btn btn-success buttonwidth" ng-click= "transfer.restarted = false; transfer.transferring = true; acceptedRestartedTransfer(transfer)">Restart File Transfer</button>
+        <button type="button" class="btn btn-danger buttonwidth" ng-click= "transfer.initialized = false; transfer.declined = true; declinedTransfer(transfer)">Decline File Transfer</button>
+      </div>
+      <button type="button" class="btn btn-default buttonwidth" ng-mouseover="buttonHoverOver()" ng-mouseleave="buttonHoverLeave()" ng-show="transfer.initialized || restartedByUser(transfer)">Requesting...</button>
+      <div ng-show="buttonMouseOver" ng-mouseover="buttonHoverOver()" ng-mouseleave="buttonHoverLeave()" ng-click="transfer.restarted=false; cancelTransfer(transfer)" class="glyphicon glyphicon-remove-circle graycancelcircle"></div>
+    </div>
+  </div>
+  <div ng-show="midLevelCount && lowLevelCount">
+    <hr>
+  </div>
+
+  <!--Bottom Level-->
+  <div class = "row" ng-repeat="transfer in sentTransfers" ng-init="transferStatusCheck(transfer)" ng-show="transfer.cancelled || transfer.declined || transfer.removedByReceiver" ng-hide="transfer.initialized || transfer.transferring || transfer.removedBySender || transfer.restarted">
+    <div class = "col-md-2 col-md-offset-2">
+      <img src="{{transfer.pictureID}}" class="friendpicturebottomadjust">
+    </div>
+    <div class = "col-md-4 friendinfo">
+      <h4>{{transfer.transferReceiverFirstName}} {{transfer.transferReceiverLastName}} {{transfer.transferReceiverUserName | parenthesis}}</h4>
+      <h5>{{transfer.transferReceiverEmail}}</h5>
+      <h5><em>Date started: {{transfer.transferHistory[0].date | date}}</em></h5>
+      <h5 class="red"><em>Date {{transfer.transferStatus.status}}: {{transfer.transferStatus.date | date}}</em></h5>
+    </div>
+    <div class = "col-md-3">
+      <div class="restartadjust">
+        <button type="button" class="btn btn-success buttonwidth" ng-click="restartTransfer(transfer)">Restart</button>
+        <button type="button" class="btn btn-default glyphicon glyphicon-trash darkgray" ng-click="removeTransfer(transfer)"></button>
+      </div>
+    </div>
+  </div>
+
+  <!--When you have no transfers-->
+  <div class = "row" ng-show="!topLevelCount && !midLevelCount && !lowLevelCount && noTransfers">
+    <div class = "col-md-12 col-sm-12 centered">
+      <br>
+      <p class = "centered">You seem to not have any transfers started.</p>
+      <button type="button" class="btn btn-primary btn-lg" ui-sref="friends">Start a New Transfer</button>
+    </div>
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="container">
+    <p>Snabbt.io | 2015
+  </div>
+</footer>
